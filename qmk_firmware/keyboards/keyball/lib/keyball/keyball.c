@@ -166,7 +166,25 @@ void pointing_device_driver_set_cpi(uint16_t cpi) {
     keyball_set_cpi(cpi);
 }
 
+void cursor_report(report_mouse_t *mouse_report, float delta_x, float delta_y, float speed_adjust, uint16_t cpi) {
+    float x = -delta_x;
+    float y = delta_y;
+
+    int sign_x = (x > 0) - (x < 0);
+    int sign_y = (y > 0) - (y < 0);
+
+    x = pow(fabs(x), speed_adjust) / (pow(cpi / 3, speed_adjust)) * cpi / 3 * sign_x;
+    y = pow(fabs(y), speed_adjust) / (pow(cpi / 3, speed_adjust)) * cpi / 3 * sign_y;
+
+    x = x / XSCALE_FACTOR;
+    y = y / YSCALE_FACTOR;
+
+    mouse_report->x = constrain_hid(mouse_report->x + (int8_t)roundf(X));
+    mouse_report->y = constrain_hid(mouse_report->y + (int8_t)roundf(y));
+}
+
 __attribute__((weak)) void keyball_on_apply_motion_to_mouse_move(keyball_motion_t *m, report_mouse_t *r, bool is_left) {
+    cursor_report(r, m->x, m->y, 1.0, keyball_get_cpi());
 #if KEYBALL_MODEL == 61 || KEYBALL_MODEL == 39 || KEYBALL_MODEL == 147 || KEYBALL_MODEL == 44
     r->x = clip2int8(m->y);
     r->y = clip2int8(m->x);
