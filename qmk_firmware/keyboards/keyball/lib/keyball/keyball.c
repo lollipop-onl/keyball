@@ -166,25 +166,33 @@ void pointing_device_driver_set_cpi(uint16_t cpi) {
     keyball_set_cpi(cpi);
 }
 
-void cursor_report(report_mouse_t *mouse_report, float delta_x, float delta_y, float speed_adjust, uint16_t cpi) {
-    float x = -delta_x;
-    float y = delta_y;
+static void adjust_mouse_speed(keyball_motion_t *m) {
+    int16_t movement_size = abs(m->x) + abs(m->y);
 
-    int sign_x = (x > 0) - (x < 0);
-    int sign_y = (y > 0) - (y < 0);
+    float speed_multipler = 1.0;
 
-    x = pow(fabs(x), speed_adjust) / (pow(cpi / 3, speed_adjust)) * cpi / 3 * sign_x;
-    y = pow(fabs(y), speed_adjust) / (pow(cpi / 3, speed_adjust)) * cpi / 3 * sign_y;
+    if (movement_size > 60) {
+        speed_multipler = 3.0;
+    } else if (movement_size > 30) {
+        speed_multipler = 1.5;
+    } else if (movement_size > 5) {
+        speed_multipler = 1.0;
+    } else if (movement_size > 4) {
+        speed_multipler = 0.9;
+    } else if (movement_size > 3) {
+        speed_multipler = 0.7;
+    } else if (movement_size > 2) {
+        speed_multipler = 0.5;
+    } else if (movement_size > 1) {
+        speed_multipler = 0.2;
+    }
 
-    x = x / XSCALE_FACTOR;
-    y = y / YSCALE_FACTOR;
-
-    mouse_report->x = constrain_hid(mouse_report->x + (int8_t)roundf(X));
-    mouse_report->y = constrain_hid(mouse_report->y + (int8_t)roundf(y));
+    m->x = clip2int8((int16_t)(m->x * speed_multipler));
+    m->y = clip2int8((int16_t)(m->y * speed_multipler));
 }
 
 __attribute__((weak)) void keyball_on_apply_motion_to_mouse_move(keyball_motion_t *m, report_mouse_t *r, bool is_left) {
-    cursor_report(r, m->x, m->y, 1.0, keyball_get_cpi());
+    adjust_mouse_speed(m);
 #if KEYBALL_MODEL == 61 || KEYBALL_MODEL == 39 || KEYBALL_MODEL == 147 || KEYBALL_MODEL == 44
     r->x = clip2int8(m->y);
     r->y = clip2int8(m->x);
