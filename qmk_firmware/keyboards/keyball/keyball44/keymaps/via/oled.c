@@ -27,4 +27,5 @@ void keyball_oled_render_fuku(void) {
   };
 
   oled_write_raw_P(fuku_logo, sizeof(fuku_logo));
+  oled_advance_page(false);
 }
