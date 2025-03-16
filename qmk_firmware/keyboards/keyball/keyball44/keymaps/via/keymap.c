@@ -89,7 +89,7 @@ void oledkit_render_logo_user(void) {
 }
 
 void oled_init_user(oled_rotation_t rotation) {
-  return OLED_ROTATION_0;
+  return rotation;
 }
 
 #endif
