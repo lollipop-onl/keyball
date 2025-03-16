@@ -88,4 +88,8 @@ void oledkit_render_logo_user(void) {
   keyball_oled_render_fuku();
 }
 
+void oled_init_user(oled_rotation_t rotation) {
+  return OLED_ROTATION_0;
+}
+
 #endif
