@@ -45,10 +45,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [3] = LAYOUT_universal(
-    RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  , _______  ,                                        RGB_M_P  , RGB_M_B  , RGB_M_R  , RGB_M_SW , RGB_M_SN , RGB_M_K  ,
-    RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , _______  , SCRL_DVI ,                                        RGB_M_X  , RGB_M_G  , RGB_M_T  , RGB_M_TW , _______  , _______  ,
-    RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , _______  , SCRL_DVD ,                                        CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , _______  , KBC_SAVE ,
-                  QK_BOOT  , KBC_RST  , _______  ,        _______  , _______  ,                   _______  , _______  , _______       , KBC_RST  , QK_BOOT
+    MEH(KC_ESC)   , MEH(KC_Q)     , MEH(KC_W)     , MEH(KC_E)     , MEH(KC_R)     , MEH(KC_T)     ,                                        MEH(KC_Y)     , MEH(KC_U)     , MEH(KC_I)     , MEH(KC_O)     , MEH(KC_P)     , MEH(KC_DEL)   ,
+    MEH(KC_TAB)   , MEH(KC_A)     , MEH(KC_S)     , MEH(KC_D)     , MEH(KC_F)     , MEH(KC_G)     ,                                        MEH(KC_H)     , MEH(KC_J)     , MEH(KC_K)     , MEH(KC_L)     , MEH(KC_SCLN)  , _______  ,
+    MEH(KC_LSFT)  , MEH(KC_Z)     , MEH(KC_X)     , MEH(KC_C)     , MEH(KC_V)     , MEH(KC_B)     ,                                        MEH(KC_N)     , MEH(KC_M)     , MEH(KC_COMM)  , MEH(KC_DOT)   , MEH(KC_SLSH)  , _______  ,
+              KC_LALT,KC_LGUI,_______     ,_______,_______,                  _______,KC_RSFT, _______,     _______  , _______
   ),
 
   [4] = LAYOUT_universal(
