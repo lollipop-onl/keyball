@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "program.h"
 
 void keyball_oled_render_fuku(void) {
   static const char PROGRAM fuku_logo[] = {
