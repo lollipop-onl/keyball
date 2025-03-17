@@ -76,7 +76,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef OLED_ENABLE
 
 #    include "lib/oledkit/oledkit.h"
-#    include "oled.c"
+#    include "oled_icon.c"
 
 void oledkit_render_info_user(void) {
     keyball_oled_render_keyinfo();
@@ -85,7 +85,7 @@ void oledkit_render_info_user(void) {
 }
 
 void oledkit_render_logo_user(void) {
-  keyball_oled_render_fuku();
+  keyball_oled_render_icon();
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
