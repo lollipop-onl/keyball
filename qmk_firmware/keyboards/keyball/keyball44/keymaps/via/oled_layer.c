@@ -31,7 +31,7 @@ static const char PROGMEM layer_4_icon[] = {
 };
 
 void keyball_oled_render_layer_icon(void) {
-  oled_set_cursor(0, 10);
+  oled_set_cursor(1, 0);
 
   switch (get_highest_layer(layer_state)) {
     case 1: oled_write_raw_P(layer_1_icon, sizeof(layer_1_icon)); break;
