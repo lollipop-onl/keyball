@@ -57,19 +57,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , _______  , _______  , _______  , _______  , _______ ,                                        _______  , _______ , _______ , _______  , _______  , _______ ,
                   _______  , _______  , _______  ,        _______  , _______  ,                   _______  , _______  , _______       , _______  , _______
   ),
-
-  [5] = LAYOUT_universal(
-    _______  , _______   , _______  , _______  , _______  , _______  ,                                        _______  , _______  , _______  , _______ , _______ , _______  ,
-    _______  , _______  , _______  , _______  , _______  , _______ ,                                        _______  , _______  , _______  , _______ , _______  , _______  ,
-    _______ , _______  , _______  , _______  , _______  , _______ ,                                        _______  , _______ , _______ , _______  , _______  , _______ ,
-                  _______  , _______  , _______  ,        _______  , _______  ,                   _______  , _______  , _______       , _______  , _______
-  ),
 };
 // clang-format on
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
     keyball_set_scroll_mode(get_highest_layer(state) == 3);
+    keyball_oled_render_layer_icon(state);
     return state;
 }
 
@@ -87,7 +81,7 @@ void oledkit_render_info_user(void) {
 
 void oledkit_render_logo_user(void) {
   // keyball_oled_render_icon();
-  keyball_oled_render_layer_icon();
+  // keyball_oled_render_layer_icon();
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {

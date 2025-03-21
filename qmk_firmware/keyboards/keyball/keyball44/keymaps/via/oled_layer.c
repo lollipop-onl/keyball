@@ -30,8 +30,10 @@ static const char PROGMEM layer_4_icon[] = {
   0x3f, 0x7f, 0xff, 0xf0, 0xf0, 0xf2, 0xf3, 0xf3, 0xf3, 0xc0, 0xc0, 0xf3, 0xf3, 0xff, 0x7f, 0x3f
 };
 
-void keyball_oled_render_layer_icon(void) {
-  switch (get_highest_layer(layer_state)) {
+void keyball_oled_render_layer_icon(layer_state_t state) {
+  oled_set_cursor(0, 10);
+
+  switch (get_highest_layer(state)) {
     case 1: oled_write_raw_P(layer_1_icon, sizeof(layer_1_icon)); break;
     case 2: oled_write_raw_P(layer_2_icon, sizeof(layer_2_icon)); break;
     case 3: oled_write_raw_P(layer_3_icon, sizeof(layer_3_icon)); break;
