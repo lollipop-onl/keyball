@@ -30,10 +30,10 @@ void keyball_oled_render_layer_icon(void) {
     const int offset = layer * ICON_SIZE;
 
     // 上半分のアイコンを描画
-    oled_set_cursor(2, 5);
+    oled_set_cursor(2, 8);
     oled_write_raw_P(layer_icons + offset, ICON_SIZE / 2);
 
     // 下半分のアイコンを描画
-    oled_set_cursor(2, 6);
+    oled_set_cursor(2, 10);
     oled_write_raw_P(layer_icons + offset + (ICON_SIZE / 2), ICON_SIZE / 2);
 }
