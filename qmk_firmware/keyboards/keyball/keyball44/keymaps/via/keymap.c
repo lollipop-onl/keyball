@@ -60,12 +60,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#    include "oled_layer.c"
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
     keyball_set_scroll_mode(get_highest_layer(state) == 3);
-    keyball_oled_render_layer_icon(state);
     return state;
 }
 
@@ -73,20 +70,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 #    include "lib/oledkit/oledkit.h"
 #    include "oled_icon.c"
+#    include "oled_layer.c"
 
 void oledkit_render_info_user(void) {
-    keyball_oled_render_keyinfo();
-    keyball_oled_render_ballinfo();
-    keyball_oled_render_layerinfo();
+    // keyball_oled_render_keyinfo();
+    // keyball_oled_render_ballinfo();
+    // keyball_oled_render_layerinfo();
+  keyball_oled_render_layer_icon();
 }
 
-void oledkit_render_logo_user(void) {
-  // keyball_oled_render_icon();
-  // keyball_oled_render_layer_icon();
-}
+// void oledkit_render_logo_user(void) {
+//   // keyball_oled_render_icon();
+//   keyball_oled_render_layer_icon();
+// }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  return !is_keyboard_master() ? OLED_ROTATION_270 : rotation;
+  return !is_keyboard_master() ? OLED_ROTATION_180 : OLED_ROTATION_270;
 }
 
 #endif
