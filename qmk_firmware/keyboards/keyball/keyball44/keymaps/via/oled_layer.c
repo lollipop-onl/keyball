@@ -30,7 +30,7 @@ static const char PROGMEM layer_4_icon[] = {
   0x3f, 0x7f, 0xff, 0xf0, 0xf0, 0xf2, 0xf3, 0xf3, 0xf3, 0xc0, 0xc0, 0xf3, 0xf3, 0xff, 0x7f, 0x3f
 };
 
-void keyball_oled_render_layer_icon() {
+void keyball_oled_render_layer_icon(void) {
   oled_set_cursor(0, 10);
 
   switch (get_highest_layer(layer_state)) {
