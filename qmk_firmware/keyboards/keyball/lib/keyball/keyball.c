@@ -166,7 +166,13 @@ void pointing_device_driver_set_cpi(uint16_t cpi) {
     keyball_set_cpi(cpi);
 }
 
+// トラックボールの速度（感度）を調整する関数
 static void adjust_mouse_speed(keyball_motion_t *m) {
+    // Layer 3 の場合は調整しない
+    if (get_highest_layer(layer_state) == 3) {
+        return;
+    }
+    
     int16_t movement_size = abs(m->x) + abs(m->y);
 
     float speed_multipler = 1.0;
